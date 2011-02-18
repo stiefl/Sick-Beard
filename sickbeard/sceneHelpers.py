@@ -20,6 +20,15 @@ from sickbeard import common
 from sickbeard import logger
 from sickbeard import db
 
+
+import sickbeard
+from sickbeard import helpers, version, ui
+from sickbeard import logger
+
+import os, os.path, platform, shutil, time
+import sys
+import subprocess
+
 import re
 import datetime
 
@@ -27,7 +36,7 @@ from name_parser.parser import NameParser, InvalidNameException
 
 resultFilters = ("sub(pack|s|bed)", "nlsub(bed|s)?", "swesub(bed)?",
                  "(dir|sample|nfo)fix", "sample", "(dvd)?extras", 
-                 "dubbed", "german", "french", "core2hd")
+                 "french", "core2hd")
 
 def filterBadReleases(name):
 

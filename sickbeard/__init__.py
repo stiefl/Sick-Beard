@@ -206,6 +206,7 @@ COMING_EPS_SORT = None
 EXTRA_SCRIPTS = []
 
 GIT_PATH = None
+DEFAULT_LANGUAGE = 'en'
 
 __INITIALIZED__ = False
 
@@ -316,7 +317,7 @@ def initialize(consoleLogging=True):
                 NZBSRUS, NZBSRUS_UID, NZBSRUS_HASH, BINREQ, NAMING_QUALITY, providerList, newznabProviderList, \
                 NAMING_DATES, EXTRA_SCRIPTS, USE_TWITTER, TWITTER_USERNAME, TWITTER_PASSWORD, TWITTER_PREFIX, \
                 USE_BANNER, USE_LISTVIEW, METADATA_XBMC, METADATA_MEDIABROWSER, METADATA_PS3, metadata_provider_dict, \
-                NEWZBIN, NEWZBIN_USERNAME, NEWZBIN_PASSWORD, GIT_PATH, MOVE_ASSOCIATED_FILES, \
+                NEWZBIN, NEWZBIN_USERNAME, NEWZBIN_PASSWORD, GIT_PATH, DEFAULT_LANGUAGE, MOVE_ASSOCIATED_FILES, \
                 COMING_EPS_LAYOUT, COMING_EPS_SORT, COMING_EPS_DISPLAY_PAUSED, METADATA_WDTV
 
         if __INITIALIZED__:
@@ -372,7 +373,7 @@ def initialize(consoleLogging=True):
         # Set our common tvdb_api options here
         TVDB_API_PARMS = {'cache': True,
                           'apikey': TVDB_API_KEY,
-                          'language': 'en',
+                          'language': DEFAULT_LANGUAGE,
                           'cache_dir': False,
                           'http_proxy': proxy_url}
         
@@ -482,6 +483,7 @@ def initialize(consoleLogging=True):
         TWITTER_PREFIX = check_setting_str(CFG, 'Twitter', 'twitter_prefix', 'Sick Beard')
 
         GIT_PATH = check_setting_str(CFG, 'General', 'git_path', '')
+        DEFAULT_LANGUAGE = check_setting_str(CFG, 'General', 'default_language', '')
 
         EXTRA_SCRIPTS = [x for x in check_setting_str(CFG, 'General', 'extra_scripts', '').split('|') if x]
 
@@ -832,6 +834,8 @@ def save_config():
     
     new_config['General']['extra_scripts'] = '|'.join(EXTRA_SCRIPTS)
     new_config['General']['git_path'] = GIT_PATH
+    
+    new_config['General']['default_language'] = DEFAULT_LANGUAGE
 
     new_config['Blackhole'] = {}
     new_config['Blackhole']['nzb_dir'] = NZB_DIR

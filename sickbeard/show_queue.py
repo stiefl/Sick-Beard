@@ -113,7 +113,7 @@ class ShowQueue(generic_queue.GenericQueue):
 
         return queueItemObj
 
-    def addShow(self, tvdb_id, showDir, lang="en"):
+    def addShow(self, tvdb_id, showDir, lang='de'):
         queueItemObj = QueueItemAdd(tvdb_id, showDir, lang)
         self.queue.append(queueItemObj)
 
@@ -162,7 +162,7 @@ class ShowQueueItem(generic_queue.QueueItem):
 
 
 class QueueItemAdd(ShowQueueItem):
-    def __init__(self, tvdb_id, showDir, lang="en"):
+    def __init__(self, tvdb_id, showDir, lang='de'):
 
         self.tvdb_id = tvdb_id
         self.showDir = showDir

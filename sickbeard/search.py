@@ -167,7 +167,10 @@ def pickBestResult(results, quality_list=None):
         if quality_list and cur_result.quality not in quality_list:
             logger.log(cur_result.name+" is a quality we know we don't want, rejecting it", logger.DEBUG)
             continue
-        
+
+        if not "german" in cur_result.name.lower():
+            continue
+                      
         if not bestResult or bestResult.quality < cur_result.quality and cur_result.quality != Quality.UNKNOWN:
             bestResult = cur_result
         elif bestResult.quality == cur_result.quality:

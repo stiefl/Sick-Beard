@@ -1115,18 +1115,18 @@ class NewHomeAddShows:
     def getTVDBLanguages(self):
         result = tvdb_api.Tvdb().config['valid_languages']
 
-        # Make sure list is sorted alphabetically but 'en' is in front
-        if 'en' in result:
-            del result[result.index('en')]
+        # Make sure list is sorted alphabetically but 'de'' is in front
+        if 'de' in result:
+            del result[result.index('de')]
         result.sort()
-        result.insert(0,'en')
+        result.insert(0,'de')
 
         return json.dumps({'results': result})
 
     @cherrypy.expose
-    def searchTVDBForShowName(self, name, lang="en"):
+    def searchTVDBForShowName(self, name, lang='de'):
         if not lang or lang == 'null':
-                lang = "en"
+                lang = 'de'
 
         baseURL = "http://thetvdb.com/api/GetSeries.php?"
 
@@ -1189,7 +1189,7 @@ class NewHomeAddShows:
         redirect(url)
 
     @cherrypy.expose
-    def addSingleShow(self, showToAdd, whichSeries=None, skipShow=False, showDirs=[], tvdbLang="en"):
+    def addSingleShow(self, showToAdd, whichSeries=None, skipShow=False, showDirs=[], tvdbLang='de'):
 
         # we don't need to unquote the rest of the showDirs cause we're going to pass them straight through
         showToAdd = urllib.unquote_plus(showToAdd)
